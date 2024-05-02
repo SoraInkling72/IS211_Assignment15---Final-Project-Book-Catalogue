@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding Books to Catalogue</title>
+</head>
+<body>
+    <h1>Student Book Catalogue Add</h1>
+    <form action="/add_to_catalogue" method="post">
+        <input type="text" id="ISBN" name="ISBN" placeholder="Enter 10-digit ISBN" value="{{ request.form['ISBN'] }}" />
+    </form>
+</body>
+</html>
