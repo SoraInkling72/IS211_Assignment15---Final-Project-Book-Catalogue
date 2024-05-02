@@ -37,5 +37,8 @@ def add_book():
         response = urlopen(API + ISBN)
         book_data = json.load(response)
 
+        volume_info = book_data["items"][0]["volumeInfo"]
+
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
