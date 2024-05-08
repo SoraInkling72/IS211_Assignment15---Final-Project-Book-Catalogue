@@ -26,7 +26,10 @@ def login():
 
 @app.route('/catalogue_dashboard', methods=["GET", "POST"])
 def catalogue():
-    json.dumps
+    with open() as book:
+        info = json.load(book)
+
+    print(info)
 
 @app.route('/add_to_catalogue', methods=["GET", "POST"])
 def add_book():
@@ -38,6 +41,16 @@ def add_book():
         book_data = json.load(response)
 
         volume_info = book_data["items"][0]["volumeInfo"]
+        title = volume_info["title"]
+        authors = volume_info["authors"]
+        prettify_author = authors if len(authors) > 1 else authors[0]
+        page_count = volume_info["pageCount"]
+
+        #print(f"\nTitle: {title}")
+        #print(f"Author: {prettify_author}")
+        #print(f"Page Count: {page_count}")
+
+
 
 
 if __name__ == "__main__":
