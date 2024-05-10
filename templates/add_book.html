@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Adding Books to Catalogue</title>
-</head>
-<body>
-    <h1>Student Book Catalogue Add</h1>
-    <form action="/add_to_catalogue" method="post">
-        <input type="text" id="ISBN" name="ISBN" placeholder="Enter 10-digit ISBN" value="{{ request.form['ISBN'] }}" />
-        <br/>
-        <input type="submit" value="Login" />
-    </form>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Adding Books to Catalogue</title>
+	</head>
+	<body>
+		<h1>Student Book Catalogue Add</h1>
+		<!-- Display any flash messages -->
+		{% with messages = get_flashed_messages() %} {% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %} {% endwith %}
+		<form
+			action="/add_to_catalogue"
+			method="post">
+			<!-- Safely render the ISBN if it exists, otherwise show an empty input -->
+			<input
+				type="text"
+				id="ISBN"
+				name="ISBN"
+				placeholder="Enter 10-digit ISBN"
+				pattern="\d{10}"
+				title="Enter a valid 10-digit ISBN"
+				value="{{ request.form['ISBN'] if 'ISBN' in request.form else '' }}"
+				required />
+			<br />
+			<input
+				type="submit"
+				value="Add Book" />
+		</form>
+		<a href="/catalogue_dashboard">Back to Catalogue</a>
+	</body>
 </html>
