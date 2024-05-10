@@ -5,6 +5,14 @@
     <title>Catalogue Dashboard</title>
 </head>
 <body>
-
+    <h1>Book Catalogue Dashboard</h1>
+		<!-- Display any flash messages -->
+		{% with messages = get_flashed_messages() %} {% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %} {% endwith %}
 </body>
 </html>
