@@ -16,7 +16,7 @@ def login():
     username = request.form["username"]
     password = request.form["password"]
     # Basic validation
-    if username == "student" and password == "password":
+    if username == "student" and password == "bookworm":
         return redirect("/catalogue_dashboard")
     else:
         flash("Please input correct credentials")
