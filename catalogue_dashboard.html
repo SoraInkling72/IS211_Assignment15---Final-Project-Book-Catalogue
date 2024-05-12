@@ -14,5 +14,36 @@
 			{% endfor %}
 		</ul>
 		{% endif %} {% endwith %}
+	<table id="student book catalogue">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Author(s)</th>
+				<th>Page Count</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="title"> </td>
+				<td id="authors"> </td>
+				<td id="page_count"> </td>
+			</tr>
+		</tbody>
+	</table>
+	<script>
+		$(document).ready(function () {
+			$.getJSON('booklist.json', function (data) {
+				$.each(data, function (key, value) {
+					$('#title).append(value.title + "<br>");
+					$('#authors).append(value.authors + "<br>");
+					$('#page_count).append(value.page_count + "<br>");
+				});
+			});
+		});
+	</script>
+<br>
+<div>
+    <button onclick="location.href='/add_to_catalogue'">Add Book</button>
+</div>
 </body>
 </html>
