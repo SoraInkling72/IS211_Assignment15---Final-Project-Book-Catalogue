@@ -68,17 +68,15 @@ def add_book_form():
                 book_list = json.load(book_file)
                 book_list.append(new_book)
                 book_file.seek(0)  # Move cursor to the beginning of the file
-                json.dump(book_list, book_file)
+                json.dumps(book_list, book_file)
             return redirect("/catalogue_dashboard")
         except FileNotFoundError:
             with open("booklist.json", "w") as book_file:
-                json.dump([new_book], book_file)
+                json.dumps([new_book], book_file)
             return redirect("/catalogue_dashboard")
     except (IndexError, KeyError):
         flash("No results found for ISBN")
         return redirect("/catalogue_dashboard")
-
-
 
 
 
