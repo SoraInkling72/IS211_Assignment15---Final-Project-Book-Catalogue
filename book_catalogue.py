@@ -46,7 +46,7 @@ def add_book():
 @app.route("/add_to_catalogue/form", methods=["POST"])
 def add_book_form():
     ISBN = request.form["ISBN"]
-    API = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN
+    API = "https://www.googleapis.com/books/v1/volumes?q=isbn:"+ISBN
     response = urlopen(API)
     book_data = json.load(response)
 
