@@ -48,7 +48,7 @@ def add_book_form():
     ISBN = request.form["ISBN"]
     API = "https://www.googleapis.com/books/v1/volumes?q=isbn:"+ISBN
     response = urlopen(API)
-    book_data = json.load(response)
+    book_data = json.loads(response)
 
     try:
         volume_info = book_data["items"][0]["volumeInfo"]
