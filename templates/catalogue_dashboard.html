@@ -31,12 +31,12 @@
 		</tbody>
 	</table>
 	<script>
-		$(document).ready(function () {
-			$.getJSON('booklist.json', function (data) {
+		$(document).ready(function() {
+			$.getJSON('booklist.json', function(data) {
 				$.each(data, function (key, value) {
-					$('#title).append(value.title + "<br>");
-					$('#authors).append(value.authors + "<br>");
-					$('#page_count).append(value.page_count + "<br>");
+					$('#title').append(value.title + "<br>");
+					$('#authors').append(value.authors + "<br>");
+					$('#page_count').append(value.page_count + "<br>");
 				});
 			});
 		});
