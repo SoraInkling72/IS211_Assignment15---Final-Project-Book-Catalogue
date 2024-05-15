@@ -61,7 +61,7 @@ def add_book_form():
             "title": title,
             "authors": prettify_author,
             "page_count": page_count,
-        }
+                    }
 
         try:
             with open("booklist.json", "r+") as book_file:
