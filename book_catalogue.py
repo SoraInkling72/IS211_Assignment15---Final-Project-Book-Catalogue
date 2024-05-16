@@ -1,9 +1,11 @@
 import json
 from urllib.request import urlopen
 from flask import Flask, flash, jsonify, redirect, render_template, request
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = "sprigatito906"
+CORS(app)
 
 
 @app.route("/")
@@ -38,6 +40,13 @@ def catalogue_books():
         return jsonify(book_list)
     except FileNotFoundError:
         return jsonify([])
+
+def delete_book(catalogue_books):
+    # Delete the specified Book
+    with open("booklist.json", "r+") as book_file:
+        book_list = json.load(book_file)
+        if 0 <= catalogue_books < len(book_list):
+            del book_list[catalogue_books]
 
 @app.route("/add_to_catalogue")
 def add_book():
@@ -78,7 +87,14 @@ def add_book_form():
         flash("No results found for ISBN")
         return redirect("/catalogue_dashboard")
 
-
+@app.route('/delete_book/<int:catalogue_books>')
+def delete_book(catalogue_books):
+    # Delete the specified Book
+    with open("booklist.json", "r+") as book_file:
+        book_list = json.load(book_file)
+        if 0 <= catalogue_books < len(book_list):
+            del book_list[catalogue_books]
+            return redirect('/catalogue_dashboard')
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
