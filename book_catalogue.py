@@ -1,11 +1,9 @@
 import json
 from urllib.request import urlopen
 from flask import Flask, flash, jsonify, redirect, render_template, request
-from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = "sprigatito906"
-CORS(app)
 
 
 @app.route("/")
@@ -41,16 +39,25 @@ def catalogue_books():
     except FileNotFoundError:
         return jsonify([])
 
+@app.route('/delete_book/<int:catalogue_books>', methods=["POST"])
 def delete_book(catalogue_books):
-    # Delete the specified Book
-    with open("booklist.json", "r+") as book_file:
-        book_list = json.load(book_file)
-        if 0 <= catalogue_books < len(book_list):
-            del book_list[catalogue_books]
+    try:
+        with open("booklist.json", "r+") as book_file:
+            book_list = json.load(book_file)
+            if 0 <= catalogue_books < len(book_list):
+                del book_list[catalogue_books]
+                book_file.seek(0)  # Move cursor to the beginning of the file
+                book_file.truncate()  # Clear the file
+                json.dump(book_list, book_file)
+        return redirect('/catalogue_dashboard')
+    except FileNotFoundError:
+        flash("Book list not found")
+        return redirect('/catalogue_dashboard')
 
 @app.route("/add_to_catalogue")
 def add_book():
     return render_template("add_book.html")
+
 
 @app.route("/add_to_catalogue/form", methods=["POST"])
 def add_book_form():
@@ -65,12 +72,14 @@ def add_book_form():
         authors = volume_info.get("authors", ["Unknown Author"])
         prettify_author = ", ".join(authors)
         page_count = volume_info.get("pageCount", 0)
+        thumbnail = volume_info.get("imageLinks", {})["smallThumbnail"]
 
         new_book = {
             "title": title,
             "authors": prettify_author,
             "page_count": page_count,
-                    }
+            "smallThumbnail": thumbnail,
+            }
 
         try:
             with open("booklist.json", "r+") as book_file:
