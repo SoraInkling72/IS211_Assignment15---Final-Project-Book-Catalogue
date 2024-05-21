@@ -87,14 +87,6 @@ def add_book_form():
         flash("No results found for ISBN")
         return redirect("/catalogue_dashboard")
 
-@app.route('/delete_book/<int:catalogue_books>')
-def delete_book(catalogue_books):
-    # Delete the specified Book
-    with open("booklist.json", "r+") as book_file:
-        book_list = json.load(book_file)
-        if 0 <= catalogue_books < len(book_list):
-            del book_list[catalogue_books]
-            return redirect('/catalogue_dashboard')
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
