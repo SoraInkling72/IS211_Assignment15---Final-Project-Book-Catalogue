@@ -22,9 +22,10 @@
 				type="text"
 				id="ISBN"
 				name="ISBN"
-				placeholder="Enter 10-digit ISBN"
-				pattern="\d{10}"
-				title="Enter a valid 10-digit ISBN"
+				size="24"
+				placeholder="Enter 10-digit or 13-digit ISBN"
+				pattern="[0-9,X]{10,13}"
+				title="Enter a valid 10- or 13-digit ISBN"
 				value="{{ request.form['ISBN'] if 'ISBN' in request.form else '' }}"
 				required />
 			<br />
