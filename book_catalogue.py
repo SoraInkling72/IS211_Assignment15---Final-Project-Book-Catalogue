@@ -63,8 +63,8 @@ def delete_book(catalogue_books):
 def add_book():
     return render_template("add_book.html")
 
-@app.route("/add_to_catalogue/form", methods=["POST"])
-def add_book_form():
+@app.route("/add_to_catalogue/isbn", methods=["POST"])
+def add_book_isbn():
     ISBN = request.form["ISBN"]
     API = ("https://www.googleapis.com/books/v1/volumes?q=isbn:"+ISBN)
 
