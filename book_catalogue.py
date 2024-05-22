@@ -73,7 +73,8 @@ def add_book_form():
     try:
         volume_info = book_data["items"][0]["volumeInfo"]
         title = volume_info.get("title", "No Title Available")
-        authors = volume_info.get("authors", ["Unknown Author"])
+        authors = volume_info.get("authors", ["Unknown Author"])  # Sometimes the author is not visible due the
+                                                                  # URL relying on an older version of Google Books
         prettify_author = ", ".join(authors)
         page_count = volume_info.get("pageCount", 0)
         thumbnail = volume_info.get("imageLinks", {})["smallThumbnail"]
