@@ -67,14 +67,16 @@ def add_book():
 def add_book_form():
     ISBN = request.form["ISBN"]
     API = ("https://www.googleapis.com/books/v1/volumes?q=isbn:"+ISBN)
-    response = urlopen(API)
-    book_data = json.load(response)
 
     try:
+       with urlopen(API) as response:
+        book_data = json.load(response)
         volume_info = book_data["items"][0]["volumeInfo"]
         title = volume_info.get("title", "No Title Available")
-        authors = volume_info.get("authors", ["Unknown Author"])  # Sometimes the author is not visible due the
-                                                                  # URL relying on an older version of Google Books
+        authors = volume_info.get("authors", ["Unknown Author"])  # Sometimes the author is not visible due the URL
+                                                                  # relying on an older version of Google Books. You can
+                                                                  # edit the JSON yourself to show it, but that's not
+                                                                  # the same as extracting the data form the source.
         prettify_author = ", ".join(authors)
         page_count = volume_info.get("pageCount", 0)
         thumbnail = volume_info.get("imageLinks", {})["smallThumbnail"]

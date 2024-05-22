@@ -28,8 +28,8 @@
 				title="Enter a valid 10- or 13-digit ISBN"
 				value="{{ request.form['ISBN'] if 'ISBN' in request.form else '' }}"
 				required />
-			<!--This is to ensure the ISBN is valid with either 10 or 13 digits; some 10-digit ISBNs have an "X", hence,
-				"X" is one of the acceptable values-->
+			<!-- This is to ensure the ISBN is valid with either 10 or 13 digits; some 10-digit ISBNs have an "X", hence,
+				 "X" is one of the acceptable values -->
 			<br />
 			<input
 				type="submit"
