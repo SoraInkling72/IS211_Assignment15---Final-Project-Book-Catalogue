@@ -54,10 +54,14 @@ def delete_book(catalogue_books):
         flash("Book list not found")
         return redirect('/catalogue_dashboard')
 
+# The delete function is similar to the adding function, which is based on the function in the task list assignment done
+# previously. The only difference being the "truncate" function, which will clear the file and reload it with the data
+# that wasn't removed. A real world analogy would be clearing a bookshelf and  placing back the books except for the one
+# you don't want to return.
+
 @app.route("/add_to_catalogue")
 def add_book():
     return render_template("add_book.html")
-
 
 @app.route("/add_to_catalogue/form", methods=["POST"])
 def add_book_form():
