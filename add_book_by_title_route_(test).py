@@ -25,12 +25,13 @@ def add_book_title():
       page_count = volume_info.get("pageCount", 0)
       thumbnail = volume_info.get("imageLinks", {})["smallThumbnail"]
       
-      new_book = {
+      books = {
         "title": title,
         "authors": prettify_author,
         "page_count": page_count,
         "smallThumbnail": thumbnail,
         }
+
       try:
         with open("catalogue.json", "r+") as catalogue_file:
           catalogue_list = json.load(catalogue_file)
@@ -55,25 +56,21 @@ def title_choose():
   try:
     with open("catalogue.json", "r") as catalogue_file:
       catalogue_list = json.load(catalogue_file)
-    return jsonify(book_list)
+    return jsonify(catalogue_list)
   except FileNotFoundError:
     return jsonify([])
 
 @app.route('/choose_book/<int:title_choose>', methods=["POST"])
-def choose_book_clear_list(title_choose):
-  try:
-    with open("catalogue.json", "r+") as catalogue_file:
-      catalogue_list = json.load(catalogue_file)
-        if 0 <= title_choose < len(catalogue_list):
-          def transfer_to_booklist():
-            with open ("catalogue.json", "r") as f:
-              source_data = json.load(f)
-            with open ("booklist.json", "w") as f:
-              json.dump(source_data,f)
-          del catalogue_list[title_choose]
-          catalogue_file.truncate() # Clear the file
-          json.dump(catalogue_list, catalogue_file)
+def transfer_to_booklist(title_choose):
+    with open ("catalogue.json", "r") as catalogue_file:
+      source_data = json.load(catalogue_file)
+    with open ("booklist.json", "w") as book_file:
+      json.dump(source_data,book_file)
+      del catalogue_list
+      catalogue_file.seek(0)  # Move cursor to the beginning of the file
+      catalogue_file.truncate() # Clear the file
+      json.dump(catalogue_list, catalogue_file)
     return redirect('/catalogue_dashboard')
-  except FileNotFoundError:
-    flash("Catalogue list not found")
-    return redirect('/catalogue_dashboard')
+
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)
