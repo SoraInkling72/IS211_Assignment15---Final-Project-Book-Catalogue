@@ -55,9 +55,10 @@ def delete_book(catalogue_books):
         return redirect('/catalogue_dashboard')
 
 # The delete function is similar to the adding function, which is based on the function in the task list assignment done
-# previously. The only difference being the "truncate" function, which will clear the file and reload it with the data
-# that wasn't removed. A real world analogy would be clearing a bookshelf and  placing back the books except for the one
-# you don't want to return.
+# previously. The only difference being the "truncate" function, which will clear the file of the corresponding data
+# selected in the table. An analogy of this is using the "Find and Replace" function in a word processor program (e.g.,
+# Microsoft Word, Google Docs, etc.) and then detecting the specific word you wish to remove and then delete by
+# replacing the word with a blank.
 
 @app.route("/add_to_catalogue")
 def add_book():
