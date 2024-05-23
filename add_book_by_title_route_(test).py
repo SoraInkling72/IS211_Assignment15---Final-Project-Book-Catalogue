@@ -1,3 +1,11 @@
+import json
+from urllib.request import urlopen
+from flask import Flask, flash, jsonify, redirect, render_template, request
+
+app = Flask(__name__)
+app.secret_key = "sprigatito906"
+
+
 @app.route("/add_to_catalogue/title", methods=["GET", "POST"])
 def add_book_title():
   title = request.form["title"]
