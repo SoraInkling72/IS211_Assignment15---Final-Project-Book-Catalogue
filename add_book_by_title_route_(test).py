@@ -66,7 +66,7 @@ def transfer_to_booklist(title_choose):
       source_data = json.load(catalogue_file)
     with open ("booklist.json", "w") as book_file:
       json.dump(source_data,book_file)
-      del catalogue_list
+      del catalogue_list[title_choose]
       catalogue_file.seek(0)  # Move cursor to the beginning of the file
       catalogue_file.truncate() # Clear the file
       json.dump(catalogue_list, catalogue_file)
