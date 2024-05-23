@@ -45,7 +45,7 @@ def delete_book(catalogue_books):
         with open("booklist.json", "r+") as book_file:
             book_list = json.load(book_file)
             if 0 <= catalogue_books < len(book_list):
-                del book_list[catalogue_books]
+                del book_list[catalogue_books] # The function in the brackets will be affected by the delete function
                 book_file.seek(0)  # Move cursor to the beginning of the file
                 book_file.truncate()  # Clear the file
                 json.dump(book_list, book_file)
