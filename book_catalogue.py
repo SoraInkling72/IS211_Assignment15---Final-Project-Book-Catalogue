@@ -78,13 +78,13 @@ def add_book_isbn():
                                                                   # relying on an older version of Google Books. You can
                                                                   # edit the JSON yourself to show it, but that's not
                                                                   # the same as extracting the data form the source.
-        prettify_author = ", ".join(authors)
+        one_or_multiple_author = ", ".join(authors)
         page_count = volume_info.get("pageCount", 0)
         thumbnail = volume_info.get("imageLinks", {})["smallThumbnail"]
 
         new_book = {
             "title": title,
-            "authors": prettify_author,
+            "authors": one_or_multiple_author,
             "page_count": page_count,
             "smallThumbnail": thumbnail,
             }
