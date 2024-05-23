@@ -58,7 +58,7 @@ def delete_book(catalogue_books):
 # previously. The only difference being the "truncate" function, which will clear the file of the corresponding data
 # selected in the table. An analogy of this is using the "Find and Replace" function in a word processor program (e.g.,
 # Microsoft Word, Google Docs, etc.) and then detecting the specific word you wish to remove and then delete by
-# replacing the word with a blank.
+# replacing the word with a blank
 
 @app.route("/add_to_catalogue")
 def add_book():
