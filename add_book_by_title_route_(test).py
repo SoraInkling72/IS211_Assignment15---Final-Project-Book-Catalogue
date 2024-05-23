@@ -71,7 +71,7 @@ def choose_book_clear_list(title_choose):
             with open ("booklist.json", "w") as f:
               json.dump(source_data,f)
           del catalogue_list[title_choose]
-          book_file.truncate() # Clear the file
+          catalogue_file.truncate() # Clear the file
           json.dump(catalogue_list, catalogue_file)
     return redirect('/catalogue_dashboard')
   except FileNotFoundError:
