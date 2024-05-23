@@ -5,6 +5,8 @@ Note: the JSON file is empty on Python Anywhere (I do not know why despite uploa
 
 This is my final project submission, being a book catalogue.
 
+Please note, that files with "test" in their filename are to be ignored as they haven't been fully tested yet and are not part of the main file, which is titled "book_catalogue.py"
+
 This is the project description: A web application that helps a user record details about the books they own. The application allows a user to login and type in an ISBN, which will instigate a search using the Google Books API. The server will save some of the information to a JSON database, which will be used to show the user their list of books.
 
 The login route was simple, serving as the index route. With knowledge from a previous project, I was able to code request forms from the user_login.html. The route would utilize the POST method, though, it would only accept one kind of username and password. Anything else would trigger a flash message to input only the accepted credentials and reload the index (login) page.
