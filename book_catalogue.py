@@ -77,7 +77,7 @@ def add_book_isbn():
         authors = volume_info.get("authors", ["Unknown Author"])  # Sometimes the author is not visible due the URL
                                                                   # relying on an older version of Google Books. You can
                                                                   # edit the JSON yourself to show it, but that's not
-                                                                  # the same as extracting the data form the source.
+                                                                  # the same as extracting the data from the source.
         one_or_multiple_author = ", ".join(authors)
         page_count = volume_info.get("pageCount", 0)
         thumbnail = volume_info.get("imageLinks", {})["smallThumbnail"]
